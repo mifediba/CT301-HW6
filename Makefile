@@ -5,8 +5,8 @@ GPP = g++
 GPPFlags = -Wall -Wextra -Werror -Wfatal-errors -std=c++20
 
 # Source and output names 
-SRC = GameOfLife.cpp BasicGOL.cpp ThreeStateGOL.cpp WrapAroundGOL.cpp GOLApp.cpp
-HEADER = GameOfLife.h BasicGOL.h ThreeStateGOL.h WrapAroundGOL.h
+SRC = GameOfLife.cpp BasicGOL.cpp ThreeStateGOL.cpp WrapAroundGOL.cpp RollingBuffer.cpp GOLApp.cpp
+HEADER = GameOfLife.h BasicGOL.h ThreeStateGOL.h WrapAroundGOL.h RollingBuffer.h
 
 HWNUM = HW6
 TARNAME = Marytheresa_Ifediba
