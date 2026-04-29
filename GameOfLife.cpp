@@ -1,5 +1,6 @@
     #include "GameOfLife.h"
-    void GameOfLife::NextNGen(int gen){}
+    void GameOfLife::NextNGen(int gens){}
+    void GameOfLife::RollBack(int gens){}
     void GameOfLife::PrintGame() const{}
     void GameOfLife::ToggleCell(int index){}
     void GameOfLife::ToggleCell(int row, int col){}

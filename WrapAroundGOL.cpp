@@ -7,15 +7,15 @@
 #include <stdexcept>
 
 	//Constructor with filename input
-	WrapAroundGOL::WrapAroundGOL(int width, int height, std::string grid): width(width), height(height), grid(grid), generation(0){
+	WrapAroundGOL::WrapAroundGOL(int width, int height, std::string grid, size_t saveGens): width(width), height(height), grid(grid), saveGens(saveGens), generation(0){
         std::string g;
         InputContentCheck(width, height, grid);
         g = GetGridDirect(grid);
         this->grid = g;
         //std::cout << "WrapAroundGOL test - width: " << width << ", height: " << height << ", grid: " << grid << std::endl;
     }
-    std::shared_ptr<GameOfLife> makeWrapAround(int width, int height, std::string grid){
-        return std::make_shared<WrapAroundGOL>(width, height, grid);
+    std::shared_ptr<GameOfLife> makeWrapAround(int width, int height, std::string grid, size_t saveGens){
+        return std::make_shared<WrapAroundGOL>(width, height, grid, saveGens);
     }
     void WrapAroundGOL::NextGen(){
         int loopcounter = 0;
@@ -100,6 +100,7 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
+    void WrapAroundGOL::RollBack(int gens){}
 
 	void WrapAroundGOL::NextNGen(int gens){
         if (gens > 0){
@@ -111,7 +112,8 @@
             return;
         }
         else{
-            throw std::invalid_argument("Negative generation not allowed.\n");
+
+            //throw std::invalid_argument("Negative generation not allowed.\n");
         }
 	}
 	void WrapAroundGOL::PrintGame() const{

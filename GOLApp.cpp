@@ -16,7 +16,7 @@
 int main(int argc, char **argv){
    try{
       BasicGOL game1(4, 4, "XOXOXOXXOOXOXOXO");
-      BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO");
+      BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
       // ThreeStateGOL game2(2, 2, "XOXX");
       WrapAroundGOL game3(5, 5, "XXXXXXXOXXXXXOXXOOOXXXXXX");
       ThreeStateGOL game4(6, 5, "XXXXXXXDOODXXOXXOXXDOODXXXXXXX");

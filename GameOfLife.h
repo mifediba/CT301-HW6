@@ -19,7 +19,8 @@ public:
 	
 	//Virtual functions
 	virtual void NextGen() = 0;
-	virtual void NextNGen(int gen);
+	virtual void NextNGen(int gens);
+	virtual void RollBack(int gens);
 	virtual void PrintGame() const;
 	virtual void ToggleCell(int index);
 	virtual void ToggleCell(int row, int col);

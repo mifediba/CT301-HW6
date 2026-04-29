@@ -7,15 +7,15 @@
 #include <stdexcept>
 
 	//Constructor with filename input
-    BasicGOL::BasicGOL(int width, int height, std::string grid):width(width), height(height), grid(grid), generation(0){
+    BasicGOL::BasicGOL(int width, int height, std::string grid, size_t saveGens):width(width), height(height), grid(grid), saveGens(saveGens), generation(0){
         std::string g;
         InputContentCheck(width, height, grid);
         g = GetGridDirect(grid);
         this->grid = g;
         //std::cout << "BasicGOL test - width: " << width << ", height: " << height << ", grid: " << grid << std::endl;
     }
-    std::shared_ptr<GameOfLife> makeStandard(int width, int height, std::string grid){
-        return std::make_shared<BasicGOL>(width, height, grid);
+    std::shared_ptr<GameOfLife> makeStandard(int width, int height, std::string grid, size_t saveGens){
+        return std::make_shared<BasicGOL>(width, height, grid, saveGens);
     }
     void BasicGOL::NextGen(){
         int loopcounter = 0;
@@ -86,6 +86,7 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
+    void BasicGOL::RollBack(int gens){}
     void BasicGOL::NextNGen(int gens){
         if (gens > 0){
             for (int j = 0; j < gens; j++){

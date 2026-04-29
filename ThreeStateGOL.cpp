@@ -7,15 +7,15 @@
 #include <stdexcept>
 
 	//Constructor with filename input
-	ThreeStateGOL::ThreeStateGOL(int width, int height, std::string grid): width(width), height(height), grid(grid), generation(0){
+	ThreeStateGOL::ThreeStateGOL(int width, int height, std::string grid, size_t saveGens): width(width), height(height), grid(grid), saveGens(saveGens), generation(0){
         std::string g;
         InputContentCheck(width, height, grid);
         g = GetGridDirect(grid);
         this->grid = g;   
         //std::cout << "ThreeStateGOL test - width: " << width << ", height: " << height << ", grid: " << grid << std::endl;
     }
-    std::shared_ptr<GameOfLife> makeThreeState(int width, int height, std::string grid){
-        return std::make_shared<ThreeStateGOL>(width, height, grid);
+    std::shared_ptr<GameOfLife> makeThreeState(int width, int height, std::string grid, size_t saveGens){
+        return std::make_shared<ThreeStateGOL>(width, height, grid, saveGens);
     }
     void ThreeStateGOL::NextGen(){
         int loopcounter = 0;
@@ -99,6 +99,8 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
+    void ThreeStateGOL::RollBack(int gens){}
+
 	void ThreeStateGOL::NextNGen(int gens){
         if (gens > 0){
             for (int j = 0; j < gens; j++){
