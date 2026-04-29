@@ -6,7 +6,6 @@
 #include <memory>
 
 class GameOfLife{
-
 public:
 	//Copy constructor
 //	GameOfLife(const GameOfLife&);
@@ -26,8 +25,11 @@ public:
 	virtual void ToggleCell(int row, int col);
 	virtual std::shared_ptr<GameOfLife> clone() const = 0;
 	GameOfLife& operator+=(int gens);
+	GameOfLife& operator-=(int gens);
 	GameOfLife& operator++();
+	GameOfLife& operator--();
 	std::shared_ptr<GameOfLife> operator+(int gens) const;	
+	std::shared_ptr<GameOfLife> operator-(int gens) const;
 };
 
 #endif //GAMEOFLIFE_H

@@ -86,7 +86,9 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
-    void BasicGOL::RollBack(int gens){}
+    void BasicGOL::RollBack(int gens){
+        std::cout << "Rollback BasicGOL.\n";
+    }
     void BasicGOL::NextNGen(int gens){
         if (gens > 0){
             for (int j = 0; j < gens; j++){

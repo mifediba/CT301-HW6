@@ -5,8 +5,8 @@ GPP = g++
 GPPFlags = -Wall -Wextra -Werror -Wfatal-errors -std=c++20
 
 # Source and output names 
-SRC = GameOfLife.cpp BasicGOL.cpp ThreeStateGOL.cpp WrapAroundGOL.cpp RollingBuffer.cpp GOLApp.cpp
-HEADER = GameOfLife.h BasicGOL.h ThreeStateGOL.h WrapAroundGOL.h RollingBuffer.h
+SRC = GameOfLife.cpp BasicGOL.cpp ThreeStateGOL.cpp WrapAroundGOL.cpp RollingHistory.cpp GOLApp.cpp
+HEADER = GameOfLife.h BasicGOL.h ThreeStateGOL.h WrapAroundGOL.h RollingHistory.h
 
 HWNUM = HW6
 TARNAME = Marytheresa_Ifediba
@@ -15,7 +15,7 @@ TARNAME = Marytheresa_Ifediba
 TARGET = GOLApp
 
 # Compile
-$(HWNUM).a: GameOfLife.o BasicGOL.o ThreeStateGOL.o WrapAroundGOL.o
+$(HWNUM).a: GameOfLife.o BasicGOL.o ThreeStateGOL.o WrapAroundGOL.o RollingHistory.o
 	ar -rcs $(HWNUM).a $^
 	rm $^
 

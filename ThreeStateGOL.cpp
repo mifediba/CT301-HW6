@@ -76,13 +76,13 @@
             else if (t == '1' ){ //leave live cell value unchanged in cell has 2 or 3 living neighbors
                 new_grid += '1';
             }
-            else if (t = 'D' && num_live_neighbors == 3){
+            else if (t == 'D' && num_live_neighbors == 3){
                 new_grid += '1'; //change decaying to live if 3 live neighbors
             }
-            else if (t = 'D' && num_live_neighbors ==2){
+            else if (t == 'D' && num_live_neighbors ==2){
                 new_grid += 'D'; //dkecaying cell with exactly 2 live neightbors stays decaying
             }
-            else if (t = 'D' && (num_live_neighbors < 2 || num_live_neighbors > 3)){
+            else if (t == 'D' && (num_live_neighbors < 2 || num_live_neighbors > 3)){
                 new_grid += '0'; //decaying cell with any other live-neighbor count becomes dead
             }
             else if (t == '0' && num_live_neighbors == 3){ //change dead cell value to live if have 3 living neighbors 
@@ -99,7 +99,10 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
-    void ThreeStateGOL::RollBack(int gens){}
+    void ThreeStateGOL::RollBack(int gens){
+        std::cout << "Rollback ThreeStateGOL.\n";
+
+    }
 
 	void ThreeStateGOL::NextNGen(int gens){
         if (gens > 0){

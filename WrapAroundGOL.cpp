@@ -100,7 +100,10 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
-    void WrapAroundGOL::RollBack(int gens){}
+    void WrapAroundGOL::RollBack(int gens){
+        std::cout << "Rollback WrapAroundGOL.\n";
+
+    }
 
 	void WrapAroundGOL::NextNGen(int gens){
         if (gens > 0){

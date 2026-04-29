@@ -7,6 +7,7 @@
 #include "BasicGOL.h"
 #include "ThreeStateGOL.h"
 #include "WrapAroundGOL.h"
+ 
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -16,23 +17,32 @@
 int main(int argc, char **argv){
    try{
       BasicGOL game1(4, 4, "XOXOXOXXOOXOXOXO");
-      BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
+      //BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
       // ThreeStateGOL game2(2, 2, "XOXX");
-      WrapAroundGOL game3(5, 5, "XXXXXXXOXXXXXOXXOOOXXXXXX");
-      ThreeStateGOL game4(6, 5, "XXXXXXXDOODXXOXXOXXDOODXXXXXXX");
-      game1.NextGen();
+      //WrapAroundGOL game3(5, 5, "XXXXXXXOXXXXXOXXOOOXXXXXX");
+      //ThreeStateGOL game4(6, 5, "XXXXXXXDOODXXOXXOXXDOODXXXXXXX");
+      --game1;
+      game1.PrintGame();
+      WrapAroundGOL game4(5, 5, "XXXXXOOOXXXXXOOXXXOOXXXXX");
+      game4.PrintGame();
+      --game4;
+      //game1.NextGen();
       // game2.NextGen();
-      game3.NextGen();
-      game3.PrintGame();
-      ++game3;
-      game3.PrintGame();
-      ++game3;
-      game3.PrintGame();
-      game3.NextNGen(2);
-      game3.PrintGame();
-      game4.PrintGame();
-      game4.NextNGen(2);
-      game4.PrintGame();
+      //game3.NextGen();
+      //game3.PrintGame();
+      //++game3;
+      //game3.PrintGame();
+      //++game3;
+      //game3.PrintGame();
+      //game3.NextNGen(2);
+      //game3.PrintGame();
+      //game4.PrintGame();
+      //game4.NextNGen(2);
+      //game4.PrintGame();
+      ThreeStateGOL game5(3, 3, "XOXXOXXOX");
+      game5.NextGen();
+      --game5;
+      game5.PrintGame();
    
       
      /*
