@@ -23,6 +23,7 @@ public:
 	virtual void PrintGame() const;
 	virtual void ToggleCell(int index);
 	virtual void ToggleCell(int row, int col);
+	virtual const std::string& GetCurrentGrid() const = 0;
 	virtual std::shared_ptr<GameOfLife> clone() const = 0;
 	GameOfLife& operator+=(int gens);
 	GameOfLife& operator-=(int gens);

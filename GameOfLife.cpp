@@ -4,6 +4,7 @@
     void GameOfLife::PrintGame() const{}
     void GameOfLife::ToggleCell(int index){}
     void GameOfLife::ToggleCell(int row, int col){}
+	//const std::string& GetCurrentGrid() const{}
     
     
     GameOfLife& GameOfLife::operator+=(int gens){

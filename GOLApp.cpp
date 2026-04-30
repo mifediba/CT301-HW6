@@ -17,8 +17,26 @@
 
 int main(int argc, char **argv){
    try{
-      BasicGOL game1(4, 4, "XOXOXOXXOOXOXOXO");
-      RollingHistory history(3);
+      //BasicGOL game1(4, 4, "OOXOXOXXOXXOXOXO", 5);
+      //ThreeStateGOL game1(4, 4, "OOXOXOXXOXXOXOXO", 5);
+      WrapAroundGOL game1(4, 4, "OOXOXOXXOXXOXOXO", 5);
+      game1.PrintGame();
+      game1.NextGen();
+      game1.PrintGame();
+      game1.NextGen();
+      game1.PrintGame();
+      game1.NextGen();
+      game1.PrintGame();
+      game1.NextGen();
+      game1.PrintGame();
+      game1.RollBack(31);
+      //std::cout << "After rolling back 3 generations:\n";
+      game1.PrintGame();
+      
+      //game1.NextNGen(3);
+      //game1.PrintGame();
+      
+      /*RollingHistory history(3);
       history.AddGame(game1.clone());
       game1.NextGen();
       history.AddGame(game1.clone());
@@ -39,6 +57,7 @@ int main(int argc, char **argv){
       history.PrintHistory();
       history.GetNewest()->PrintGame();
       history.GetOldest()->PrintGame();
+      */
 
       //BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
       // ThreeStateGOL game2(2, 2, "XOXX");
@@ -90,6 +109,9 @@ int main(int argc, char **argv){
       std::cerr << "Out of range error: " << e.what() << std::endl;
    }
    catch (std::invalid_argument &e){
+      std::cerr << e.what() << std::endl;
+   }
+   catch (std::range_error &e){
       std::cerr << e.what() << std::endl;
    }
    return 0;

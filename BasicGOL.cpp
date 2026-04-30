@@ -1,19 +1,25 @@
 #include "BasicGOL.h"
+#include "RollingHistory.h"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <stdexcept>
+#include<deque>
+
 
 	//Constructor with filename input
     BasicGOL::BasicGOL(int width, int height, std::string grid, size_t saveGens):width(width), height(height), grid(grid), saveGens(saveGens), generation(0){
         std::string g;
         InputContentCheck(width, height, grid);
         g = GetGridDirect(grid);
+        //RollingHistory history(saveGens);
         this->grid = g;
         //std::cout << "BasicGOL test - width: " << width << ", height: " << height << ", grid: " << grid << std::endl;
     }
+        
+
     std::shared_ptr<GameOfLife> makeStandard(int width, int height, std::string grid, size_t saveGens){
         return std::make_shared<BasicGOL>(width, height, grid, saveGens);
     }
@@ -26,8 +32,9 @@
         int num_dead_neighbors = 0;
         std::string neighbors = "ABC";
         std::string new_grid ="";
-       // RollingHistory(saveGens);
-        //history.print(std::make_shared<BasicGOL>(*this));
+        //RollingHistory history(saveGens);
+        history.AddGame(std::make_shared<BasicGOL>(*this));
+        
         //std::cout << "Current grid: **" << grid << std::endl;
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
@@ -93,7 +100,22 @@
     //    return history->getGame(saveGens);
     //}
     void BasicGOL::RollBack(int gens){
-        std::cout << "Rollback BasicGOL.\n";
+        for (int i = 0; i < gens; i++){
+            //std::cout << generation << std::endl;
+            //history.GetNewest()->PrintGame();
+            grid = history.GetNewest()->GetCurrentGrid();
+            history.RemoveNewest(gens);
+          
+           generation--;
+        }
+        //history.RemoveNewest(gens); 
+        //std::cout << "Rollback successful" << std::endl;
+        //history.PrintHistory(); 
+       // NextGen();
+///        grid = history.GetNewest()->GetCurrentGrid();
+        //generation -= gens;
+       // std::shared_ptr<GameOfLife> previousGame = history.GetNewest();
+       // previousGame 
     }
     void BasicGOL::NextNGen(int gens){
         if (gens > 0){
@@ -145,6 +167,9 @@
             int index = (row * width) + col;
             ToggleCell(index);
         }
+    }
+    const std::string& BasicGOL::GetCurrentGrid() const{
+        return grid;
     }
     std::shared_ptr<GameOfLife> BasicGOL::clone() const{
         return std::make_shared<BasicGOL>(*this);

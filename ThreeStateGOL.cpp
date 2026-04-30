@@ -1,4 +1,5 @@
 #include "ThreeStateGOL.h"
+#include "RollingHistory.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -26,6 +27,8 @@
         int num_dead_neighbors = 0;
         std::string neighbors = "ABC";
         std::string new_grid ="";
+        history.AddGame(std::make_shared<ThreeStateGOL>(*this));
+
         //std::cout << "Current grid: **" << grid << std::endl;
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
@@ -100,8 +103,22 @@
         generation++; //increment up generation
     }
     void ThreeStateGOL::RollBack(int gens){
-        std::cout << "Rollback ThreeStateGOL.\n";
-
+        for (int i = 0; i < gens; i++){
+            //std::cout << generation << std::endl;
+            //history.GetNewest()->PrintGame();
+            grid = history.GetNewest()->GetCurrentGrid();
+            history.RemoveNewest(gens);
+          
+           generation--;
+        }
+        //history.RemoveNewest(gens); 
+        //std::cout << "Rollback successful" << std::endl;
+        //history.PrintHistory(); 
+       // NextGen();
+///        grid = history.GetNewest()->GetCurrentGrid();
+        //generation -= gens;
+       // std::shared_ptr<GameOfLife> previousGame = history.GetNewest();
+       // previousGame 
     }
 
 	void ThreeStateGOL::NextNGen(int gens){
@@ -154,6 +171,9 @@
             int index = (row * width) + col;
             ToggleCell(index);
         }
+    }
+    const std::string& ThreeStateGOL::GetCurrentGrid() const{
+        return grid;
     }
     std::shared_ptr<GameOfLife> ThreeStateGOL::clone() const{
         return std::make_shared<ThreeStateGOL>(*this);

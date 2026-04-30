@@ -8,11 +8,22 @@ void RollingHistory::AddGame(const std::shared_ptr<GameOfLife>& game){
     }
     history.push_back(std::move(game));
 }
-
+void RollingHistory::RemoveNewest(int gens){
+    //std::cout << "Start" << std::endl;
+    //GetNewest()->PrintGame();
+    
+        if (history.empty()){
+            std::range_error("No more generations to roll back.\n");
+            return;
+        }
+        history.pop_back();
+      //  std::cout << "After removing newest generation:\n";
+      //  GetNewest()->PrintGame();
+}
 std::shared_ptr<GameOfLife> RollingHistory::GetNewest() const{
     if (history.empty()){
-        std::cout << "No games in history.\n";
-        return nullptr;
+        std::range_error("No more generations to roll back.\n");
+            return nullptr;
     }
     else{
         return history.back();

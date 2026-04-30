@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 #include "GameOfLife.h"
+#include "RollingHistory.h"
+
 
 std::shared_ptr<GameOfLife> makeThreeState(int width, int height, std::string grid, size_t saveGens = 100);
 
@@ -17,6 +19,7 @@ class ThreeStateGOL : public GameOfLife{
       int generation;
 		  void InputContentCheck(int width, int height, std::string grid);
 		  std::string GetGridDirect(std::string board);
+          RollingHistory history{saveGens};
     public:
         //Constructor
         ThreeStateGOL(int width, int height, std::string grid, size_t saveGens = 100);
@@ -31,6 +34,7 @@ class ThreeStateGOL : public GameOfLife{
         void PrintGame() const override;
         void ToggleCell(int index) override;
         void ToggleCell(int row, int col) override;
+        const std::string& GetCurrentGrid() const override;
         std::shared_ptr<GameOfLife> clone() const override;
 };
 #endif //THREESTATEGOL_H

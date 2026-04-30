@@ -1,4 +1,5 @@
 #include "WrapAroundGOL.h"
+#include "RollingHistory.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -28,6 +29,8 @@
         std::string neighbors = "ABC";
         std::string new_grid ="";
         //std::cout << "Current grid: **" << grid << std::endl;
+        history.AddGame(std::make_shared<WrapAroundGOL>(*this));
+
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
             column = loopcounter % width; //defining length of the grid based on file width input
@@ -101,8 +104,22 @@
         generation++; //increment up generation
     }
     void WrapAroundGOL::RollBack(int gens){
-        std::cout << "Rollback WrapAroundGOL.\n";
-
+        for (int i = 0; i < gens; i++){
+            //std::cout << generation << std::endl;
+            //history.GetNewest()->PrintGame();
+            grid = history.GetNewest()->GetCurrentGrid();
+            history.RemoveNewest(gens);
+          
+           generation--;
+        }
+        //history.RemoveNewest(gens); 
+        //std::cout << "Rollback successful" << std::endl;
+        //history.PrintHistory(); 
+       // NextGen();
+///        grid = history.GetNewest()->GetCurrentGrid();
+        //generation -= gens;
+       // std::shared_ptr<GameOfLife> previousGame = history.GetNewest();
+       // previousGame 
     }
 
 	void WrapAroundGOL::NextNGen(int gens){
@@ -156,6 +173,9 @@
             int index = (row * width) + col;
             ToggleCell(index);
         }
+    }
+    const std::string& WrapAroundGOL::GetCurrentGrid() const{
+        return grid;
     }
     std::shared_ptr<GameOfLife> WrapAroundGOL::clone() const{
         return std::make_shared<WrapAroundGOL>(*this);
