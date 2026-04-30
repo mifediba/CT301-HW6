@@ -18,7 +18,8 @@ class BasicGOL : public GameOfLife{
         int generation;
 		void InputContentCheck(int width, int height, std::string grid);
 		std::string GetGridDirect(std::string board);
-		//RollingHistory::RollingHistory history;
+		std::shared_ptr<GameOfLife> currentGame;;
+		//RollingHistory history{10};
 
 	public:
 		//Constructor
@@ -29,8 +30,9 @@ class BasicGOL : public GameOfLife{
 		void PrintGame() const override;
 		void ToggleCell(int index) override;
 		void ToggleCell(int row, int col) override;
-		//const std::deque<std::shared_ptr<GameOfLife>>& GetHistory() const;
-
+		//const std::deque<std::shared_ptr<GameOfLife>>& PrintHistory() const;
+		//void PrintHistory() const;
+		//std::shared_ptr<GameOfLife> getGame(size_t saveGens);
 		std::shared_ptr<GameOfLife> clone() const override;
 };
 #endif //BASICGO_H

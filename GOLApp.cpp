@@ -7,6 +7,7 @@
 #include "BasicGOL.h"
 #include "ThreeStateGOL.h"
 #include "WrapAroundGOL.h"
+#include "RollingHistory.h"
  
 #include <iostream>
 #include <fstream>
@@ -17,15 +18,38 @@
 int main(int argc, char **argv){
    try{
       BasicGOL game1(4, 4, "XOXOXOXXOOXOXOXO");
+      RollingHistory history(3);
+      history.AddGame(game1.clone());
+      game1.NextGen();
+      history.AddGame(game1.clone());
+      game1.NextGen();
+      history.AddGame(game1.clone());
+      game1.NextGen();
+      history.AddGame(game1.clone());
+      game1.NextGen();
+      history.AddGame(game1.clone());
+      history.PrintHistory();
+      game1.NextGen();
+      std::cout << "***\n";
+      history.AddGame(game1.clone());
+      history.PrintHistory();
+      game1.NextGen();
+      std::cout << "&&&&\n";
+      history.AddGame(game1.clone());
+      history.PrintHistory();
+
       //BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
       // ThreeStateGOL game2(2, 2, "XOXX");
       //WrapAroundGOL game3(5, 5, "XXXXXXXOXXXXXOXXOOOXXXXXX");
       //ThreeStateGOL game4(6, 5, "XXXXXXXDOODXXOXXOXXDOODXXXXXXX");
-      --game1;
-      game1.PrintGame();
-      WrapAroundGOL game4(5, 5, "XXXXXOOOXXXXXOOXXXOOXXXXX");
-      game4.PrintGame();
-      --game4;
+     // --game1;
+     // game1.PrintGame();
+      
+     // WrapAroundGOL game4(5, 5, "XXXXXOOOXXXXXOOXXXOOXXXXX");
+     // game4.PrintGame();
+     // --game4;
+      
+      
       //game1.NextGen();
       // game2.NextGen();
       //game3.NextGen();
@@ -39,10 +63,10 @@ int main(int argc, char **argv){
       //game4.PrintGame();
       //game4.NextNGen(2);
       //game4.PrintGame();
-      ThreeStateGOL game5(3, 3, "XOXXOXXOX");
-      game5.NextGen();
-      --game5;
-      game5.PrintGame();
+      //ThreeStateGOL game5(3, 3, "XOXXOXXOX");
+      //game5.NextGen();
+      //--game5;
+      //game5.PrintGame();
    
       
      /*

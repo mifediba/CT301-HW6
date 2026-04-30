@@ -26,6 +26,8 @@
         int num_dead_neighbors = 0;
         std::string neighbors = "ABC";
         std::string new_grid ="";
+       // RollingHistory(saveGens);
+        //history.print(std::make_shared<BasicGOL>(*this));
         //std::cout << "Current grid: **" << grid << std::endl;
         for (char t : grid){//looping through each character in the grid
             row = loopcounter / width; //defining the width of the grid based on file width input
@@ -86,6 +88,10 @@
         grid = new_grid; //replace current grid with newly calculated grid
         generation++; //increment up generation
     }
+    //std::shared_ptr<GameOfLife> BasicGOL::getGame(size_t saveGens){
+    //    history->AddGame(clone());
+    //    return history->getGame(saveGens);
+    //}
     void BasicGOL::RollBack(int gens){
         std::cout << "Rollback BasicGOL.\n";
     }
