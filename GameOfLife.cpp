@@ -11,14 +11,18 @@
         if (gens >= 0){
             NextNGen(gens);
         }
-        //else{
+        else{
             //throw std::invalid_argument("Negative generation not permitted.\n");
-        //}
+            RollBack(-gens);
+        }
         return *this;
     }
     GameOfLife& GameOfLife::operator-=(int gens){
         if (gens >= 0){
             RollBack(gens);
+        }
+        else{
+            NextNGen(-gens);
         }
         //else{
             //throw std::invalid_argument("Negative generation not permitted.\n");
@@ -34,21 +38,31 @@
         return *this;
     }
     std::shared_ptr<GameOfLife> GameOfLife::operator+(int gens) const{
-        //if (gens > 0){
+        if (gens >= 0){
             std::shared_ptr<GameOfLife> newGOL = clone();
             (*newGOL).NextNGen(gens);
             return newGOL;
-        //}
+        }
+        else{
+            std::shared_ptr<GameOfLife> newGOL = clone();
+            (*newGOL).RollBack(-gens);
+            return newGOL;
+        }
         //else{
             ;//throw std::invalid_argument("Negative generation not permitted.\n");
         //}  
     }
     std::shared_ptr<GameOfLife> GameOfLife::operator-(int gens) const{
-        //if (gens > 0){
+        if (gens >= 0){
             std::shared_ptr<GameOfLife> newGOL = clone();
             (*newGOL).RollBack(gens);
             return newGOL;
-        //}
+        }
+        else{
+            std::shared_ptr<GameOfLife> newGOL = clone();
+            (*newGOL).NextNGen(-gens);
+            return newGOL;
+        }
         //else{
             //throw std::invalid_argument("Negative generation not permitted.\n");
         //}  
