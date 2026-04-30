@@ -37,6 +37,8 @@ int main(int argc, char **argv){
       std::cout << "&&&&\n";
       history.AddGame(game1.clone());
       history.PrintHistory();
+      history.GetNewest()->PrintGame();
+      history.GetOldest()->PrintGame();
 
       //BasicGOL game2(4, 4, "XXOXOXXOOXOXOOXO", 10);
       // ThreeStateGOL game2(2, 2, "XOXX");

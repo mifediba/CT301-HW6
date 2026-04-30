@@ -8,7 +8,7 @@ void RollingHistory::AddGame(const std::shared_ptr<GameOfLife>& game){
     }
     history.push_back(std::move(game));
 }
-/*
+
 std::shared_ptr<GameOfLife> RollingHistory::GetNewest() const{
     if (history.empty()){
         std::cout << "No games in history.\n";
@@ -18,10 +18,19 @@ std::shared_ptr<GameOfLife> RollingHistory::GetNewest() const{
         return history.back();
     }
 }
-void RollingHistory::print(std::shared_ptr<GameOfLife> game) const{
-    game->PrintGame();
+std::shared_ptr<GameOfLife> RollingHistory::GetOldest() const{
+    if (history.empty()){
+        std::cout << "No games in history.\n";
+        return nullptr;
+    }
+    else{
+        return history.front();
+    }
 }
-    */
+//void RollingHistory::print(std::shared_ptr<GameOfLife> game) const{
+//    game->PrintGame();
+//}
+    
 //const std::deque<std::shared_ptr<GameOfLife>>& RollingHistory::PrintHistory() const{
 
 void RollingHistory::PrintHistory() const{
